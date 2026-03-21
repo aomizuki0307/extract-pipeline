@@ -279,7 +279,7 @@
   border: none;
   background: transparent;
   resize: vertical;
-  min-height: 200px;
+  min-height: 140px;
   border-radius: var(--radius-md);
   margin-bottom: 0;
   font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
@@ -306,6 +306,13 @@
 }
 
 /* API key */
+.optional-badge {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--pico-muted-color, #6b7280);
+  font-style: italic;
+}
+
 .api-key-group label {
   margin-bottom: 0.25rem;
 }
@@ -328,6 +335,14 @@
   color: var(--stage-fail);
   font-size: 0.825rem;
   margin: 0.25rem 0 0;
+}
+
+/* Samples section — moved above Extract button */
+.samples-section {
+  border-top: none;
+  border-bottom: 1px solid var(--pico-muted-border-color, #e5e7eb);
+  padding-top: 0;
+  padding-bottom: 0.75rem;
 }
 
 /* Extract button */
@@ -382,11 +397,7 @@
   to { transform: rotate(360deg); }
 }
 
-/* Sample buttons */
-.samples-section {
-  border-top: 1px solid var(--pico-muted-border-color, #e5e7eb);
-  padding-top: 0.75rem;
-}
+/* Sample buttons (primary styles are above, near extract-btn) */
 
 .samples-label {
   font-size: 0.825rem;

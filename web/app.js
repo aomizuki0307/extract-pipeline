@@ -354,6 +354,8 @@ async function handleExtract() {
 
   const text = elDocText.value.trim();
   if (!text) {
+    resetStages();
+    showError('Please enter or paste document text, or load a sample above.');
     elDocText.focus();
     return;
   }

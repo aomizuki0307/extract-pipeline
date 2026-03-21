@@ -106,7 +106,7 @@
 
       <div class="api-key-group">
         <label for="api-key">
-          Anthropic API Key
+          Anthropic API Key <span class="optional-badge">(optional)</span>
           <input
             type="password"
             id="api-key"
@@ -117,9 +117,17 @@
           />
         </label>
         <small id="api-key-note" class="muted">
-          Passed through this server to Anthropic API. Kept in sessionStorage only (cleared when tab closes).
+          Leave blank to use the demo server key. Your key is kept in sessionStorage only (cleared when tab closes).
         </small>
         <p id="api-key-error" class="field-error" role="alert" aria-live="assertive" hidden></p>
+      </div>
+
+      <div class="samples-section" aria-label="Sample documents">
+        <p class="samples-label">Try sample documents:</p>
+        <div id="sample-buttons" class="sample-buttons" role="group" aria-label="Load sample document">
+          <!-- Populated dynamically by app.js -->
+          <button type="button" class="outline sample-btn skeleton-btn" disabled aria-hidden="true">Loading…</button>
+        </div>
       </div>
 
       <button
@@ -134,14 +142,6 @@
         <span class="btn-spinner" aria-hidden="true"></span>
       </button>
       <p id="extract-status" class="visually-hidden" role="status" aria-live="polite"></p>
-
-      <div class="samples-section" aria-label="Sample documents">
-        <p class="samples-label">Try sample documents:</p>
-        <div id="sample-buttons" class="sample-buttons" role="group" aria-label="Load sample document">
-          <!-- Populated dynamically by app.js -->
-          <button type="button" class="outline sample-btn skeleton-btn" disabled aria-hidden="true">Loading…</button>
-        </div>
-      </div>
 
     </section>
 
