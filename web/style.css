@@ -9,8 +9,8 @@
   --stage-fail:    #ef4444;
   --stage-skip:    #9ca3af;
   --stage-warn:    #f59e0b;
-  --stage-neutral: #e5e7eb;
-  --stage-neutral-text: #6b7280;
+  --stage-neutral: #d1d5db;
+  --stage-neutral-text: #374151;
 
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
   --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.10);
@@ -70,9 +70,11 @@
   color: var(--brand-color);
 }
 
-.header-brand strong {
+.brand-title {
   font-size: 1.05rem;
   color: var(--pico-color);
+  margin: 0;
+  line-height: 1.3;
 }
 
 .brand-tagline {
@@ -133,8 +135,8 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--stage-neutral);
-  color: var(--stage-neutral-text);
+  background: #d1d5db !important;
+  color: #374151 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,6 +202,25 @@
   background: var(--connector-color);
   margin-bottom: 1.4rem; /* offset for label below circle */
   border-radius: 1px;
+}
+
+@media (max-width: 480px) {
+  .stage-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+  .stage-label {
+    font-size: 0.55rem;
+  }
+  .stage-connector {
+    min-width: 8px;
+    max-width: 24px;
+    margin-bottom: 1.1rem;
+  }
+  .pipeline-bar {
+    padding: 0 0.5rem;
+  }
 }
 
 /* ─── Main Two-Column Grid ───────────────────────────────────── */
@@ -381,7 +402,8 @@
 
 .sample-btn {
   font-size: 0.8rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.5rem 0.85rem !important;
+  min-height: 44px !important;
   margin-bottom: 0;
   border-radius: var(--radius-full);
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -501,7 +523,7 @@
 .fields-list dt {
   font-weight: 600;
   font-size: 0.825rem;
-  color: var(--pico-muted-color, #6b7280);
+  color: #4b5563;
   font-family: ui-monospace, monospace;
   white-space: nowrap;
 }
