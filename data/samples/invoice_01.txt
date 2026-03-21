@@ -1,0 +1,27 @@
+INVOICE
+
+Invoice Number: INV-2024-0042
+Date: 2024-11-15
+Due Date: 2024-12-15
+
+From:
+  TechSupply Corp
+  123 Innovation Drive
+  San Francisco, CA 94105
+
+Bill To:
+  Acme Industries
+  456 Business Ave
+  New York, NY 10001
+
+Items:
+  1. Cloud Server Hosting (Monthly)    x 3    @ $299.00/ea    $897.00
+  2. SSL Certificate (Annual)          x 1    @ $79.99/ea     $79.99
+  3. Technical Support (Hours)         x 10   @ $150.00/ea    $1,500.00
+
+                                          Subtotal:  $2,476.99
+                                          Tax (8%):  $198.16
+                                          TOTAL:     $2,675.15
+
+Currency: USD
+Payment Terms: Net 30

@@ -1,0 +1,107 @@
+test_cases:
+  # --- Invoices ---
+  - case_id: "inv_01"
+    doc_type: "invoice"
+    input_file: "data/samples/invoice_01.txt"
+    expected:
+      invoice_number: "INV-2024-0042"
+      vendor_name: "TechSupply Corp"
+      customer_name: "Acme Industries"
+      issue_date: "2024-11-15"
+      due_date: "2024-12-15"
+      total_amount: 2675.15
+      currency: "USD"
+      tax_amount: 198.16
+      subtotal: 2476.99
+
+  - case_id: "inv_02"
+    doc_type: "invoice"
+    input_file: "data/samples/invoice_02.txt"
+    expected:
+      invoice_number: "JP-2024-1087"
+      vendor_name: "株式会社デジタルソリューションズ"
+      customer_name: "山田商事株式会社"
+      issue_date: "2024-10-01"
+      due_date: "2024-10-31"
+      total_amount: 1375000
+      currency: "JPY"
+      tax_amount: 125000
+      subtotal: 1250000
+
+  - case_id: "inv_03"
+    doc_type: "invoice"
+    input_file: "data/samples/invoice_01.txt"
+    expected:
+      invoice_number: "INV-2024-0042"
+      vendor_name: "TechSupply Corp"
+      customer_name: "Acme Industries"
+      issue_date: "2024-11-15"
+      total_amount: 2675.15
+
+  # --- Support Tickets ---
+  - case_id: "tkt_01"
+    doc_type: "support_ticket"
+    input_file: "data/samples/ticket_01.txt"
+    expected:
+      ticket_id: "SUP-8847"
+      customer_name: "Sarah Johnson"
+      customer_email: "sarah.johnson@example.com"
+      subject: "Cannot access my account after password reset"
+      category: "technical"
+      priority: "high"
+      product: "CloudDash Pro"
+
+  - case_id: "tkt_02"
+    doc_type: "support_ticket"
+    input_file: "data/samples/ticket_02.txt"
+    expected:
+      customer_name: "田中太郎"
+      customer_email: "tanaka@example.co.jp"
+      subject: "請求金額の誤りについて"
+      category: "billing"
+      priority: "high"
+      product: "BizManager Enterprise"
+
+  - case_id: "tkt_03"
+    doc_type: "support_ticket"
+    input_file: "data/samples/ticket_01.txt"
+    expected:
+      customer_name: "Sarah Johnson"
+      category: "technical"
+      priority: "high"
+
+  # --- Emails ---
+  - case_id: "email_01"
+    doc_type: "email"
+    input_file: "data/samples/email_01.txt"
+    expected:
+      from_name: "Michael Chen"
+      from_email: "m.chen@globaltech.com"
+      to_name: "Lisa Park"
+      to_email: "l.park@acmecorp.com"
+      date: "2024-11-20"
+      subject: "Q4 Partnership Proposal - Follow Up"
+      intent: "follow_up"
+      sentiment: "positive"
+
+  - case_id: "email_02"
+    doc_type: "email"
+    input_file: "data/samples/email_02.txt"
+    expected:
+      from_name: "佐藤花子"
+      from_email: "sato@designworks.co.jp"
+      to_name: "鈴木一郎"
+      to_email: "suzuki@clientcorp.co.jp"
+      date: "2024-11-18"
+      subject: "デザインレビュー結果のご報告"
+      intent: "notification"
+      sentiment: "neutral"
+
+  - case_id: "email_03"
+    doc_type: "email"
+    input_file: "data/samples/email_01.txt"
+    expected:
+      from_name: "Michael Chen"
+      to_name: "Lisa Park"
+      intent: "follow_up"
+      sentiment: "positive"

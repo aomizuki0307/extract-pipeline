@@ -1,0 +1,32 @@
+classification:
+  model: "claude-sonnet-4-20250514"
+  confidence_threshold: 0.7
+  doc_types:
+    - invoice
+    - support_ticket
+    - email
+
+extraction:
+  model: "claude-sonnet-4-20250514"
+  max_retries: 2
+
+guardrails:
+  max_input_length: 10000
+  injection_patterns:
+    - "ignore previous instructions"
+    - "ignore all instructions"
+    - "disregard your instructions"
+    - "you are now"
+    - "act as if"
+    - "pretend you are"
+    - "forget everything"
+    - "system prompt"
+    - "jailbreak"
+    - "reveal your prompt"
+    - "output your instructions"
+
+pipeline:
+  schemas_dir: "data/schemas"
+  samples_dir: "data/samples"
+  golden_path: "data/golden/test_cases.yaml"
+  results_dir: "results"

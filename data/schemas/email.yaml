@@ -1,0 +1,47 @@
+doc_type: email
+description: "Business email or correspondence"
+fields:
+  from_name:
+    type: string
+    required: true
+    description: "Sender's name"
+  from_email:
+    type: string
+    required: false
+    description: "Sender's email address"
+  to_name:
+    type: string
+    required: true
+    description: "Recipient's name"
+  to_email:
+    type: string
+    required: false
+    description: "Recipient's email address"
+  date:
+    type: string
+    required: false
+    description: "Date the email was sent (YYYY-MM-DD)"
+  subject:
+    type: string
+    required: true
+    description: "Email subject line"
+  intent:
+    type: string
+    required: true
+    description: "Primary intent (inquiry, complaint, request, follow_up, notification)"
+  sentiment:
+    type: string
+    required: true
+    description: "Overall sentiment (positive, neutral, negative)"
+  key_points:
+    type: list
+    required: true
+    description: "List of key points or action items"
+    item_fields:
+      point:
+        type: string
+        required: true
+  urgency:
+    type: string
+    required: false
+    description: "Urgency level (low, medium, high)"

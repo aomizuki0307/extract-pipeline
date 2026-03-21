@@ -1,0 +1,24 @@
+Subject: Cannot access my account after password reset
+
+Hi Support Team,
+
+My name is Sarah Johnson and I've been trying to log into my account
+since yesterday. I reset my password using the "Forgot Password" link,
+received the reset email, and set a new password. But when I try to log
+in with the new password, I keep getting "Invalid credentials" error.
+
+I've tried:
+1. Clearing browser cache and cookies
+2. Using a different browser (Chrome and Firefox)
+3. Resetting the password again — same result
+
+My email is sarah.johnson@example.com and my account was created in
+March 2024. I need access urgently because I have a project deadline
+this Friday.
+
+This is related to your CloudDash Pro product.
+
+Ticket ID: SUP-8847
+
+Please help!
+Sarah

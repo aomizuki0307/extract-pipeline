@@ -1,0 +1,53 @@
+doc_type: invoice
+description: "Invoice or bill for goods/services rendered"
+fields:
+  invoice_number:
+    type: string
+    required: true
+    description: "Unique invoice identifier"
+  vendor_name:
+    type: string
+    required: true
+    description: "Name of the vendor or supplier"
+  customer_name:
+    type: string
+    required: true
+    description: "Name of the customer or buyer"
+  issue_date:
+    type: string
+    required: true
+    description: "Date the invoice was issued (YYYY-MM-DD)"
+  due_date:
+    type: string
+    required: false
+    description: "Payment due date (YYYY-MM-DD)"
+  line_items:
+    type: list
+    required: true
+    description: "List of items with description, quantity, unit_price"
+    item_fields:
+      description:
+        type: string
+        required: true
+      quantity:
+        type: number
+        required: true
+      unit_price:
+        type: number
+        required: true
+  subtotal:
+    type: number
+    required: false
+    description: "Subtotal before tax"
+  tax_amount:
+    type: number
+    required: false
+    description: "Tax amount"
+  total_amount:
+    type: number
+    required: true
+    description: "Total amount due"
+  currency:
+    type: string
+    required: false
+    description: "Currency code (e.g. USD, JPY)"

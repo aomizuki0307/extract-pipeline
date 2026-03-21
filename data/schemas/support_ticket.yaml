@@ -1,0 +1,39 @@
+doc_type: support_ticket
+description: "Customer support ticket or help desk request"
+fields:
+  ticket_id:
+    type: string
+    required: false
+    description: "Ticket or case identifier"
+  customer_name:
+    type: string
+    required: true
+    description: "Name of the customer"
+  customer_email:
+    type: string
+    required: false
+    description: "Customer email address"
+  subject:
+    type: string
+    required: true
+    description: "Brief subject or title of the issue"
+  category:
+    type: string
+    required: true
+    description: "Issue category (e.g. billing, technical, account, shipping)"
+  priority:
+    type: string
+    required: true
+    description: "Priority level (low, medium, high, urgent)"
+  description:
+    type: string
+    required: true
+    description: "Detailed description of the issue"
+  product:
+    type: string
+    required: false
+    description: "Product or service involved"
+  steps_to_reproduce:
+    type: string
+    required: false
+    description: "Steps to reproduce the issue (if applicable)"

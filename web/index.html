@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extract Pipeline — Document Extraction Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── Header ─────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner container-fluid">
+      <div class="header-brand">
+        <span class="brand-icon" aria-hidden="true">⬡</span>
+        <strong>Extract Pipeline</strong>
+        <span class="brand-tagline">6-stage document extraction</span>
+      </div>
+      <nav aria-label="Site navigation">
+        <ul>
+          <li>
+            <button
+              id="btn-schemas"
+              class="outline secondary"
+              aria-haspopup="dialog"
+              aria-controls="schema-modal"
+            >Schemas</button>
+          </li>
+          <li><a href="/docs" class="outline secondary" target="_blank" rel="noopener">API Docs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── Pipeline Visualization ─────────────────────────────────────────── -->
+  <section class="pipeline-section" aria-label="Pipeline stages">
+    <div class="pipeline-bar" role="list" aria-label="Extraction pipeline stages">
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-sanitize" data-stage="sanitize" aria-label="Sanitize stage">
+          <span aria-hidden="true">1</span>
+        </div>
+        <span class="stage-label">Sanitize</span>
+      </div>
+      <div class="stage-connector" aria-hidden="true"></div>
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-classify" data-stage="classify" aria-label="Classify stage">
+          <span aria-hidden="true">2</span>
+        </div>
+        <span class="stage-label">Classify</span>
+      </div>
+      <div class="stage-connector" aria-hidden="true"></div>
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-route" data-stage="route" aria-label="Route stage">
+          <span aria-hidden="true">3</span>
+        </div>
+        <span class="stage-label">Route</span>
+      </div>
+      <div class="stage-connector" aria-hidden="true"></div>
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-extract" data-stage="extract" aria-label="Extract stage">
+          <span aria-hidden="true">4</span>
+        </div>
+        <span class="stage-label">Extract</span>
+      </div>
+      <div class="stage-connector" aria-hidden="true"></div>
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-validate" data-stage="validate" aria-label="Validate stage">
+          <span aria-hidden="true">5</span>
+        </div>
+        <span class="stage-label">Validate</span>
+      </div>
+      <div class="stage-connector" aria-hidden="true"></div>
+      <div class="stage-wrapper" role="listitem">
+        <div class="stage-circle" id="stage-guard" data-stage="guard" aria-label="Guard stage">
+          <span aria-hidden="true">6</span>
+        </div>
+        <span class="stage-label">Guard</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Main Content ────────────────────────────────────────────────────── -->
+  <main class="main-grid container-fluid">
+
+    <!-- Left Panel: Input -->
+    <section class="panel-input" aria-label="Document input">
+
+      <div
+        class="drop-zone"
+        id="drop-zone"
+        role="region"
+        aria-label="Drop zone for text files"
+      >
+        <label for="doc-text" class="visually-hidden">Document text</label>
+        <textarea
+          id="doc-text"
+          name="doc-text"
+          placeholder="Paste document text here, or drag &amp; drop a .txt file…"
+          rows="10"
+          aria-describedby="drop-hint"
+          spellcheck="false"
+        ></textarea>
+        <p id="drop-hint" class="drop-hint" aria-live="polite">Drop a .txt file anywhere in this area</p>
+      </div>
+
+      <div class="api-key-group">
+        <label for="api-key">
+          Anthropic API Key
+          <input
+            type="password"
+            id="api-key"
+            name="api-key"
+            placeholder="sk-ant-…"
+            autocomplete="off"
+            aria-describedby="api-key-note api-key-error"
+          />
+        </label>
+        <small id="api-key-note" class="muted">
+          Passed through this server to Anthropic API. Kept in sessionStorage only (cleared when tab closes).
+        </small>
+        <p id="api-key-error" class="field-error" role="alert" aria-live="assertive" hidden></p>
+      </div>
+
+      <button
+        id="btn-extract"
+        class="extract-btn"
+        type="button"
+        aria-busy="false"
+        aria-describedby="extract-status"
+      >
+        <span class="btn-icon" aria-hidden="true">▶</span>
+        <span class="btn-label">Extract</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+      <p id="extract-status" class="visually-hidden" role="status" aria-live="polite"></p>
+
+      <div class="samples-section" aria-label="Sample documents">
+        <p class="samples-label">Try sample documents:</p>
+        <div id="sample-buttons" class="sample-buttons" role="group" aria-label="Load sample document">
+          <!-- Populated dynamically by app.js -->
+          <button type="button" class="outline sample-btn skeleton-btn" disabled aria-hidden="true">Loading…</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Right Panel: Results -->
+    <section class="panel-results" aria-label="Extraction results" aria-live="polite">
+
+      <!-- Empty state -->
+      <div id="results-empty" class="results-empty">
+        <p class="muted">Run an extraction to see results here.</p>
+        <p class="muted small">Pipeline stages will animate above as each step completes.</p>
+      </div>
+
+      <!-- Error state -->
+      <div id="results-error" class="results-error" role="alert" aria-live="assertive" hidden>
+        <p id="error-message"></p>
+      </div>
+
+      <!-- Results content -->
+      <div id="results-content" hidden>
+
+        <!-- Classification -->
+        <article class="result-card" aria-label="Classification result">
+          <header><h3>Classification</h3></header>
+          <div class="classification-result">
+            <span id="doc-type-badge" class="doc-type-badge" aria-label="Document type"></span>
+            <span id="confidence-display" class="confidence" aria-label="Confidence score"></span>
+          </div>
+          <p id="reasoning-text" class="reasoning"></p>
+        </article>
+
+        <!-- Extracted Fields -->
+        <article class="result-card" aria-label="Extracted fields">
+          <header><h3>Extracted Fields</h3></header>
+          <dl id="fields-list" class="fields-list">
+            <!-- Populated by JS -->
+          </dl>
+        </article>
+
+        <!-- Validation -->
+        <article class="result-card validation-card" aria-label="Validation result">
+          <header><h3>Validation</h3></header>
+          <div id="validation-result" class="validation-result">
+            <!-- Populated by JS -->
+          </div>
+        </article>
+
+        <!-- Guardrail Flags -->
+        <article class="result-card" id="guardrail-card" aria-label="Guardrail flags" hidden>
+          <header><h3>Guardrail Flags</h3></header>
+          <ul id="guardrail-list" class="guardrail-list"></ul>
+        </article>
+
+        <!-- JSON Toggle -->
+        <details class="json-details" id="json-details">
+          <summary>Show full JSON response</summary>
+          <pre><code id="json-output" class="json-output"></code></pre>
+        </details>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ─── Schema Modal ────────────────────────────────────────────────────── -->
+  <dialog id="schema-modal" aria-labelledby="schema-modal-title" aria-modal="true">
+    <article class="schema-modal-article">
+      <header class="schema-modal-header">
+        <h2 id="schema-modal-title">Document Schemas</h2>
+        <button
+          id="btn-close-modal"
+          class="close-btn"
+          aria-label="Close schemas dialog"
+          type="button"
+        >✕</button>
+      </header>
+      <div id="schema-cards" class="schema-cards">
+        <!-- Populated by JS -->
+        <p class="muted">Loading schemas…</p>
+      </div>
+    </article>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
