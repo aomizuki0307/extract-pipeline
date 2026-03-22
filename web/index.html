@@ -104,9 +104,10 @@
         <p id="drop-hint" class="drop-hint" aria-live="polite">Drop a .txt file anywhere in this area</p>
       </div>
 
-      <div class="api-key-group">
+      <!-- API key field hidden: demo server key is used -->
+      <div class="api-key-group" hidden>
         <label for="api-key">
-          Anthropic API Key <span class="optional-badge">(optional — demo key provided)</span>
+          Anthropic API Key
           <input
             type="password"
             id="api-key"
@@ -116,9 +117,7 @@
             aria-describedby="api-key-note api-key-error"
           />
         </label>
-        <small id="api-key-note" class="muted">
-          Leave blank to use the demo key, or enter your own. Your key is kept in sessionStorage only.
-        </small>
+        <small id="api-key-note" class="muted"></small>
         <p id="api-key-error" class="field-error" role="alert" aria-live="assertive" hidden></p>
       </div>
 
