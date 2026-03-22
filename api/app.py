@@ -24,6 +24,10 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    from api.rate_limit import RateLimitMiddleware
+
+    app.add_middleware(RateLimitMiddleware)
+
     from api.routes import classify, extract, health, schemas
 
     app.include_router(health.router, prefix="/api", tags=["health"])

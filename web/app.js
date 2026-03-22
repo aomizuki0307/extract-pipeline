@@ -379,6 +379,12 @@ async function handleExtract() {
       return;
     }
 
+    if (response.status === 429) {
+      const body = await response.json().catch(() => ({}));
+      showError(body.detail || 'Rate limit exceeded. Please wait a moment and try again.');
+      return;
+    }
+
     if (!response.ok) {
       const body = await response.text();
       let detail = `Server error (${response.status})`;
