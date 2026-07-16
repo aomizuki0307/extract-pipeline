@@ -1,5 +1,7 @@
 # Extract Pipeline
 
+[![tests](https://github.com/aomizuki0307/extract-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/aomizuki0307/extract-pipeline/actions/workflows/tests.yml)
+
 **Structured data extraction from unstructured documents** — classify, route, extract, validate.
 
 Takes raw text (invoices, support tickets, emails) and produces validated structured JSON through a multi-stage pipeline.
