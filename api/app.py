@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -17,12 +18,20 @@ def create_app() -> FastAPI:
         openapi_url="/api/openapi.json",
     )
 
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+    # The bundled web UI is served same-origin, so no CORS is needed for the demo.
+    # Cross-origin callers must be allowlisted explicitly via CORS_ALLOW_ORIGINS.
+    cors_origins = [
+        o.strip()
+        for o in os.environ.get("CORS_ALLOW_ORIGINS", "").split(",")
+        if o.strip()
+    ]
+    if cors_origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=cors_origins,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
 
     from api.rate_limit import RateLimitMiddleware
 

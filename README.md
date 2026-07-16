@@ -4,6 +4,8 @@
 
 Takes raw text (invoices, support tickets, emails) and produces validated structured JSON through a multi-stage pipeline.
 
+**Live demo**: https://extract-pipeline.onrender.com (free-tier Render — first request may take ~30s to cold-start; demo has a small daily quota)
+
 ## Architecture
 
 ```
@@ -135,3 +137,7 @@ python main.py evaluate
 | CLI | argparse |
 | Tests | pytest |
 | Lint | ruff |
+
+## License
+
+MIT — see [LICENSE](LICENSE).
